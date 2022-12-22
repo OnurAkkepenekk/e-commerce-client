@@ -1,4 +1,6 @@
+import { AlertifyService, MessageType, Position } from './../../services/admin/alertify.service';
 import { Component } from '@angular/core';
+
 
 @Component({
   selector: 'app-layout',
@@ -6,5 +8,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent {
+  constructor() { }
 
+  ngOnInit(): void {
+  }
 }
