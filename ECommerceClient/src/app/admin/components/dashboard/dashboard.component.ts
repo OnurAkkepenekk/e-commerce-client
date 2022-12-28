@@ -20,12 +20,12 @@ export class DashboardComponent extends BaseComponent {
 
   m() {
 
-    this.alertify.message("merhabaaa", {
-      messageType: MessageType.Error,
-      dismissOther: false,
-      delay: 5,
-      position: Position.TopRight
-    })
+    // this.alertify.message("merhabaaa", {
+    //   messageType: MessageType.Error,
+    //   dismissOther: false,
+    //   delay: 5,
+    //   position: Position.TopRight
+    // })
   }
   d() {
     this.alertify.dismiss();
