@@ -13,6 +13,6 @@ export class HomeComponent extends BaseComponent {
   }
 
   ngOnInit(): void {
-    this.showSpinner(SpinnerType.BallScaleMultiple);
+    // this.showSpinner(SpinnerType.BallScaleMultiple);
   }
 }
