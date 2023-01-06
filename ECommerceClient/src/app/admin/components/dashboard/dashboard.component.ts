@@ -15,7 +15,6 @@ export class DashboardComponent extends BaseComponent {
 
   ngOnInit(): void {
     // this.alertify.message("merhabaaa", MessageType.Success, Position.TopLeft, 10)
-    this.showSpinner(SpinnerType.BallAtom);
   }
 
   m() {
