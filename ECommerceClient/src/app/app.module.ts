@@ -1,3 +1,4 @@
+import { HttpErrorHandlerInterceptorService } from './services/common/http-error-handler-interceptor.service';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AdminModule } from './admin/admin.module';
@@ -9,7 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BaseComponent } from './base/base.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DeleteDirective } from './directives/admin/delete.directive';
 import { DeleteDialogComponent } from './dialogs/delete-dialog/delete-dialog.component';
 import { FileUploadComponent } from './services/common/file-upload/file-upload.component';
@@ -49,16 +50,18 @@ import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig, So
         providers: [
           {
             id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider("key")
+            provider: new GoogleLoginProvider("654971576237-0vidj7eh31q2fm5rgnkbge3sr730puor.apps.googleusercontent.com")
           },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider("key")
-          }
+            provider: new FacebookLoginProvider("546631843676576")
+          },
         ],
         onError: err => console.log(err)
       } as SocialAuthServiceConfig
-    }
+    },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorHandlerInterceptorService, multi: true }
+
   ],
   bootstrap: [AppComponent],
   schemas: [
