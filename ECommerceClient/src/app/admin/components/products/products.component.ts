@@ -17,7 +17,7 @@ export class ProductsComponent extends BaseComponent {
   }
 
   ngOnInit(): void {
-    
+    this.listComponents.getAllProducts();
     // this.showSpinner(SpinnerType.BallAtom);
 
     // this.httpClientService.get<Product[]>({
