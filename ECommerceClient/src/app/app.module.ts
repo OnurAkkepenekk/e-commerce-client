@@ -36,7 +36,7 @@ import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig, So
     JwtModule.forRoot({
       config: {
         tokenGetter: () => localStorage.getItem("accessToken"),
-        allowedDomains: ["localhost:7131"]
+        allowedDomains: ["localhost:7260"]
       }
     }),
     SocialLoginModule
