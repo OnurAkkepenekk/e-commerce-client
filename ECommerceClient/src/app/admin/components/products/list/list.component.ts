@@ -28,13 +28,13 @@ export class ListComponent extends BaseComponent {
 
   async getAllProducts() {
     this.showSpinner(SpinnerType.BallAtom);
-    const allProducts: { totalCount: number, products: List_Product[] } = await this.productService.getAllProduct(this.paginator ? this.paginator.pageIndex : 0, this.paginator ? this.paginator.pageSize : 5, () => this.hideSpinner(SpinnerType.BallAtom), errorMessage => this.alertify.message(errorMessage, {
+    const allProducts: { totalProductCount: number, products: List_Product[] } = await this.productService.getAllProduct(this.paginator ? this.paginator.pageIndex : 0, this.paginator ? this.paginator.pageSize : 5, () => this.hideSpinner(SpinnerType.BallAtom), errorMessage => this.alertify.message(errorMessage, {
       dismissOther: true,
       messageType: MessageType.Error,
       position: Position.TopRight,
     }))
     this.dataSource = new MatTableDataSource<List_Product>(allProducts.products);
-    this.paginator.length = allProducts.totalCount;
+    this.paginator.length = allProducts.totalProductCount;
     this.dataSource.paginator = this.paginator;
   }
   async pageChanged() {
