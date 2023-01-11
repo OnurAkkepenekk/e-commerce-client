@@ -63,7 +63,6 @@ export class RegisterComponent extends BaseComponent implements OnInit {
   async onSubmit(data: User) {
     this.submitted = true;
 
-    debugger;
     if (this.frm.invalid)
       return;
 

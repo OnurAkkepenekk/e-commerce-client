@@ -1,3 +1,8 @@
+import { ToastrMessageType, ToastrPosition, CustomToastrService } from './../../../../services/ui/custom-toastr.service';
+import { Create_Basket_Item } from './../../../../contracts/basket/create_basket_item';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { BaseComponent, SpinnerType } from './../../../../base/base.component';
+import { BasketService } from './../../../../services/common/models/basket.service';
 import { FileService } from './../../../../services/common/models/file.service';
 import { BaseUrl } from './../../../../contracts/baseUrl';
 import { List_Product } from './../../../../contracts/list_product';
@@ -10,8 +15,12 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-export class ListComponent implements OnInit {
-  constructor(private productService: ProductService, private activatedRoute: ActivatedRoute, private fileService: FileService) { }
+export class ListComponent extends BaseComponent implements OnInit {
+  constructor(private productService: ProductService, private activatedRoute: ActivatedRoute,
+    private fileService: FileService, private basketService: BasketService, spinner: NgxSpinnerService,
+    private customToastrService: CustomToastrService) {
+    super(spinner)
+  }
 
   currentPageNo: number;
   totalProductCount: number;
@@ -49,8 +58,6 @@ export class ListComponent implements OnInit {
           updatedDate: p.updatedDate,
           productImageFiles: p.productImageFiles
         };
-        debugger;
-
         return listProduct;
       });
 
@@ -72,5 +79,18 @@ export class ListComponent implements OnInit {
           this.pageList.push(i);
     });
 
+  }
+
+  async addToBasket(product: List_Product) {
+    this.showSpinner(SpinnerType.BallAtom);
+    let _basketItem: Create_Basket_Item = new Create_Basket_Item();
+    _basketItem.productId = product.id;
+    _basketItem.quantity = 1;
+    await this.basketService.add(_basketItem);
+    this.hideSpinner(SpinnerType.BallAtom);
+    this.customToastrService.message("Ürün sepete eklenmiştir.", "Sepete Eklendi", {
+      messageType: ToastrMessageType.Success,
+      position: ToastrPosition.TopRight
+    });
   }
 }

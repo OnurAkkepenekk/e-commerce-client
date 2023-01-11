@@ -27,7 +27,7 @@
         Fiyat : {{ product.price | currency : "₺" }} <br />
         Stock : {{ product.stock }}
       </p>
-      <a href="#" class="btn btn-success">Add to Card</a>
+      <a  class="btn btn-success" (click) ="addToBasket(product)">Add to Card</a>
     </div>
   </div>
 </div>
