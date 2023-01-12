@@ -1,11 +1,9 @@
-<br />
-
 <div class="row">
   <div class="col-md-2"></div>
   <div class="col-md-8">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Mini E-Ticaret</a>
+        <a class="navbar-brand" routerLink="">E-Commerce</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -33,18 +31,32 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" routerLink="register" *ngIf="!authService.isAuthenticated"
+              <a
+                class="nav-link active"
+                aria-current="page"
+                routerLink="register"
+                *ngIf="!authService.isAuthenticated"
                 >Register</a
               >
             </li>
-
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" routerLink="login" *ngIf="!authService.isAuthenticated"
+              <a
+                class="nav-link active"
+                aria-current="page"
+                routerLink="login"
+                *ngIf="!authService.isAuthenticated"
                 >Login</a
               >
             </li>
             <li>
-              <a class="nav-link active" aria-current="page" style="color:red;cursor:pointer;" (click)="signOut()" *ngIf="authService.isAuthenticated">Log out</a>
+              <a
+                class="nav-link active"
+                aria-current="page"
+                style="color: red; cursor: pointer"
+                (click)="signOut()"
+                *ngIf="authService.isAuthenticated"
+                >Sign Out</a
+              >
             </li>
             <li>
               <a
@@ -52,28 +64,41 @@
                 class="btn btn-outline-success"
                 type="submit"
                 *ngIf="authService.isAuthenticated"
-                >Yönetim Paneli</a
+                >Admin Panel</a
               >
             </li>
+            <!--<li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                 data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled">Disabled</a>
+            </li>-->
           </ul>
-
-          <!-- <div class="d-flex">
-            <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal" type="submit">Sepet</button>
-          </div> -->
-          
-          <!-- <form class="d-flex">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form> -->
+          <!--<form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>-->
           <div class="d-flex">
-            <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal" type="submit">Sepet</button>
+            <button
+              class="btn btn-outline-success"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+              (click)="loadComponent()"
+              type="submit"
+            >
+              Basket
+            </button>
           </div>
         </div>
       </div>
@@ -81,7 +106,6 @@
   </div>
   <div class="col-md-2"></div>
 </div>
-
 <div class="row">
   <div class="col-md-2"></div>
   <div class="col-md-8">
@@ -92,6 +116,16 @@
 
 <ngx-spinner size="default" name="s1" type="ball-atom"></ngx-spinner>
 <ngx-spinner size="default" name="s2" type="ball-scale-multiple"></ngx-spinner>
-<ngx-spinner size="default" name="s3" type="ball-spin-clockwise-fade-rotating"></ngx-spinner>
+<ngx-spinner
+  size="default"
+  name="s3"
+  type="ball-spin-clockwise-fade-rotating"
+></ngx-spinner>
 
-<app-baskets></app-baskets>
+<!--<app-baskets></app-baskets>-->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <ng-template appDinamicLoadComponent></ng-template>
+  </div>
+</div>

@@ -19,11 +19,13 @@ import { FileUploadDialogComponent } from './dialogs/file-upload-dialog/file-upl
 import { JwtModule } from '@auth0/angular-jwt'
 import { LoginComponent } from './ui/components/login/login.component';
 import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
+import { DinamicLoadComponentDirective } from './directives/common/dinamic-load-component.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    DinamicLoadComponentDirective
   ],
   imports: [
     BrowserModule,
