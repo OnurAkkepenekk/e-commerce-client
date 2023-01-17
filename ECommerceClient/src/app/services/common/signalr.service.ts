@@ -20,34 +20,32 @@ export class SignalRService {
   // Başlatılmış bir hub verecek
   start(hubUrl: string) {
     hubUrl = this.baseSignalRUrl + hubUrl;
-    if (!this.connection || this._connection?.state == HubConnectionState.Disconnected) {
-      const builder: HubConnectionBuilder = new HubConnectionBuilder();
 
-      const hubConnection: HubConnection = builder.withUrl(hubUrl)
-        .withAutomaticReconnect()
-        .build();
+    const builder: HubConnectionBuilder = new HubConnectionBuilder();
 
-      hubConnection.start()
-        .then(() => console.log("Connected"))
-        .catch(error => setTimeout(() => this.start(hubUrl), 2000));
+    const hubConnection: HubConnection = builder.withUrl(hubUrl)
+      .withAutomaticReconnect()
+      .build();
 
-      this._connection = hubConnection;
-    }
+    hubConnection.start()
+      .then(() => console.log("Connected"))
+      .catch(error => setTimeout(() => this.start(hubUrl), 2000));
 
-    this._connection.onreconnected(connectionId => console.log("Reconnected"));
-    this._connection.onreconnecting(error => console.log("Reconnecting"));
-    this._connection.onclose(error => console.log("Close reconnection"));
+    hubConnection.onreconnected(connectionId => console.log("Reconnected"));
+    hubConnection.onreconnecting(error => console.log("Reconnecting"));
+    hubConnection.onclose(error => console.log("Close reconnection"));
+    return hubConnection;
   }
 
   // signalR üzerinden herhangi bir client'in başka client'lara mesaj gönderme işlemi için tetiklenen metot
-  invoke(procedureName: string, message: any, successCallBack?: (value) => void, errorCallBack?: (error) => void) {
-    this.connection.invoke(procedureName, message)
+  invoke(hubUrl: string, procedureName: string, message: any, successCallBack?: (value) => void, errorCallBack?: (error) => void) {
+    this.start(hubUrl).invoke(procedureName, message)
       .then(successCallBack)
       .catch(errorCallBack);
   }
 
   // serverdan gelecek mesajları anlık olarak yakalamamızı sağlayan metot
-  on(procedureName: string, callBack: (...message: any) => void) {
-    this.connection.on(procedureName, callBack);
+  on(hubUrl: string, procedureName: string, callBack: (...message: any) => void) {
+    this.start(hubUrl).on(procedureName, callBack);
   }
 }
