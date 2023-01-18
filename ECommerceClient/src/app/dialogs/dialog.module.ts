@@ -1,3 +1,4 @@
+import { MatTableModule } from '@angular/material/table';
 import { FileUploadModule } from './../services/common/file-upload/file-upload.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
@@ -8,7 +9,8 @@ import { SelectProductImageDialogComponent } from './select-product-image-dialog
 import { MatCardModule } from '@angular/material/card';
 import { BasketItemRemoveDialogComponent } from './basket-item-remove-dialog/basket-item-remove-dialog.component';
 import { ShoppingComplateDialogComponent } from './shopping-complate-dialog/shopping-complate-dialog.component';
-
+import { OrderDetailDialogComponent } from './order-detail-dialog/order-detail-dialog.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -16,11 +18,12 @@ import { ShoppingComplateDialogComponent } from './shopping-complate-dialog/shop
     SelectProductImageDialogComponent,
     BasketItemRemoveDialogComponent,
     ShoppingComplateDialogComponent,
+    OrderDetailDialogComponent,
   ],
   imports: [
     CommonModule,
-    MatDialogModule, MatButtonModule,MatCardModule,
-    FileUploadModule    
+    MatDialogModule, MatButtonModule, MatCardModule, MatTableModule, MatToolbarModule,
+    FileUploadModule
   ]
 })
 export class DialogModule { }

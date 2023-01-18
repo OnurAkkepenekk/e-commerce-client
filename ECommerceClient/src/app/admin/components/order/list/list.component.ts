@@ -1,3 +1,4 @@
+import { OrderDetailDialogComponent } from './../../../../dialogs/order-detail-dialog/order-detail-dialog.component';
 import { OrderService } from './../../../../services/common/models/order.service';
 import { List_Order } from './../../../../contracts/order/list_order';
 import { MatPaginator } from '@angular/material/paginator';
@@ -46,6 +47,16 @@ export class ListComponent extends BaseComponent implements OnInit {
   delete(id) {
     alert(id);
   }
+  showDetail(id: string) {
+    console.log(id);
+    this.dialogService.openDialog({
+      componentType: OrderDetailDialogComponent,
+      data: id,
+      options: {
+        width: "750px"
+      }
+    });
+  }
 
-  
+
 }
