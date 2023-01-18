@@ -1,3 +1,4 @@
+import { List_Order } from './../../../contracts/order/list_order';
 import { Create_Order } from './../../../contracts/order/create_order';
 import { Observable, firstValueFrom } from 'rxjs';
 import { HttpClientService } from './../http-client.service';
@@ -16,5 +17,18 @@ export class OrderService {
     }, order);
 
     await firstValueFrom(observable);
+  }
+
+  async getAllOrders(page: number = 0, size: number = 5, successCallBack?: () => void, errorCallBack?: (errorMessage: string) => void): Promise<{ totalOrderCount: number; orders: List_Order[] }> {
+    const observable: Observable<{ totalOrderCount: number; orders: List_Order[] }> = this.httpCLientService.get({
+      controller: "orders",
+      queryString: `page=${page}&size=${size}`
+    });
+
+    const promiseData = firstValueFrom(observable);
+    promiseData.then(value => successCallBack())
+      .catch(error => errorCallBack(error));
+
+    return await promiseData;
   }
 }

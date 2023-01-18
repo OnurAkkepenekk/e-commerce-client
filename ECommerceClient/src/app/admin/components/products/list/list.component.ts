@@ -41,7 +41,7 @@ export class ListComponent extends BaseComponent {
     await this.getAllProducts();
   }
 
-  async ngOnInt() {
+  async ngOnInit() {
     await this.getAllProducts();
   }
 
