@@ -4,4 +4,5 @@ export class List_Order {
     totalPrice: number;
     createdDate: Date;
     id:number;
+    completed:boolean;
   }
