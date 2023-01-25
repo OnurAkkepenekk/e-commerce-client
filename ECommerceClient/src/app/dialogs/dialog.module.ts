@@ -15,6 +15,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { CompleteOrderDialogComponent } from './complete-order-dialog/complete-order-dialog.component';
 import { AuthorizeMenuDialogComponent } from './authorize-menu-dialog/authorize-menu-dialog.component';
 import { MatBadgeModule } from '@angular/material/badge';
+import { AuthorizeUserDialogComponent } from './authorize-user-dialog/authorize-user-dialog.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { MatBadgeModule } from '@angular/material/badge';
     OrderDetailDialogComponent,
     CompleteOrderDialogComponent,
     AuthorizeMenuDialogComponent,
+    AuthorizeUserDialogComponent,
   ],
   imports: [
     CommonModule,
