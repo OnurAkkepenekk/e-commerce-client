@@ -1,3 +1,4 @@
+import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { FileUploadModule } from './../services/common/file-upload/file-upload.module';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -27,7 +28,7 @@ import { MatBadgeModule } from '@angular/material/badge';
   ],
   imports: [
     CommonModule,
-    MatDialogModule, MatButtonModule, MatCardModule, MatTableModule, MatToolbarModule,MatBadgeModule,
+    MatDialogModule, MatButtonModule, MatCardModule, MatTableModule, MatToolbarModule, MatBadgeModule, MatListModule,
     FileUploadModule
   ]
 })
