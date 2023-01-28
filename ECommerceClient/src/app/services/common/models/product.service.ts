@@ -34,7 +34,7 @@ export class ProductService {
       controller: "products",
       queryString: `page=${page}&size=${size}`
     });
-    const data: { totalProductCount: number, products: List_Product[] }= await firstValueFrom(promiseData);
+    const data: { totalProductCount: number, products: List_Product[] } = await firstValueFrom(promiseData);
     return data;
   }
 
@@ -45,7 +45,7 @@ export class ProductService {
 
     await firstValueFrom(deleteObservable);
   }
-  
+
   async readImages(id: string, successCallBack?: () => void): Promise<List_Product_Image[]> {
     const getObservable: Observable<List_Product_Image[]> = this.httpClientService.get<List_Product_Image[]>({
       action: "getproductimages",
@@ -74,6 +74,18 @@ export class ProductService {
       queryString: `imageId=${imageId}&productId=${productId}`
     });
     await firstValueFrom(changeShowcaseImageObservable);
+    successCallBack();
+  }
+
+  async updateStockQrCodeToProduct(productId: string, stock: number, successCallBack?: () => void) {
+    const observable = this.httpClientService.put({
+      controller: "products",
+      action: "qrcode"
+    }, {
+      productId, stock
+    });
+
+    await firstValueFrom(observable);
     successCallBack();
   }
 }
