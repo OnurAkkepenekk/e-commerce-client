@@ -1,3 +1,4 @@
+import { QrcodeDialogComponent } from './../../../../dialogs/qrcode-dialog/qrcode-dialog.component';
 import { MessageType, Position } from './../../../../services/admin/alertify.service';
 import { BaseComponent, SpinnerType } from './../../../../base/base.component';
 import { ProductService } from './../../../../services/common/models/product.service';
@@ -21,7 +22,7 @@ export class ListComponent extends BaseComponent {
   constructor(private productService: ProductService, spinner: NgxSpinnerService, private alertify: AlertifyService, private dialogService: DialogService) {
     super(spinner)
   }
-  displayedColumns: string[] = ['name', 'stock', 'price', "createdDate", "updatedDate", "photos", "edit", "delete",];
+  displayedColumns: string[] = ['name', 'stock', 'price', "createdDate", "updatedDate", "photos", "qrcode", "edit", "delete",];
 
   dataSource: MatTableDataSource<List_Product> = null;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -58,4 +59,12 @@ export class ListComponent extends BaseComponent {
       }
     });
   }
+  showQRCode(productId: string) {
+    this.dialogService.openDialog({
+      componentType: QrcodeDialogComponent,
+      data: productId,
+      afterClosed: () => { }
+    })
+  }
+
 }
